@@ -1,0 +1,63 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile files('lib/AbsoluteLayout.jar')
+    compile files('lib/bouncycastle.jar')
+    compile files('lib/jython.jar')
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.3'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.3'
+    compile files('lib/mina-core.jar')
+    compile files('lib/mina-integration-jmx.jar')
+
+    compile files('lib/swing-layout-1.0.3.jar')
+
+    compile files('lib/modules/DSHubGenericModule.jar')
+    compile files('lib/modules/Hubtracker.jar')
+    compile files('lib/modules/lookup.jar')
+    compile files('lib/modules/PingHH.jar')
+    compile files('lib/modules/RSSFeed.jar')
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'net.bytebuddy', name: 'byte-buddy', version: '1.10.17'
+    compile group: 'org.apache.mina', name: 'mina-core', version: '2.1.3'
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+}
+
+test {
+    useJUnitPlatform()
+}
